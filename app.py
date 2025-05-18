@@ -55,15 +55,21 @@ st.pyplot(fig)
 # Vaping resources (only show if score > 5)
 if score > 5:
     st.markdown("---")
-    st.subheader("📘 Resources to Help You Quit")
-    st.markdown("""
-- [**SmokeFree Teen Quit Vaping App**](https://teen.smokefree.gov/quit-vaping): Tools, tips, and a free quit plan.
-- [**Truth Initiative: This is Quitting**](https://truthinitiative.org/thisisquitting): Free text support — text "DITCHVAPE" to 88709.
-- [**CDC Quit Guide**](https://www.cdc.gov/tobacco/quit_smoking/how_to_quit/index.htm): Strategies and help from professionals.
-- Talk to your school counselor, a doctor, or a trusted adult about support options.
-    """)
-    st.info("You're not alone. Help is out there, and quitting is possible.")
+    st.subheader("🛠 Build Your Quit Plan")
 
-# Footer
-st.markdown("---")
-st.caption("Made with ❤️ by Escape the Vape | Educating Teens, Saving Lives.")
+    st.markdown("Answer a few quick questions to start creating a quit strategy.")
+
+    reason = st.text_input("👉 What's your biggest reason for wanting to quit?")
+    support = st.selectbox("👥 Who can support you?", ["Parent", "Friend", "Counselor", "Teacher", "None"])
+    trigger = st.text_input("⚠️ What usually makes you want to vape?")
+    strategy = st.selectbox("🧠 What’s one thing you’ll do instead of vaping?", [
+        "Go for a walk", "Drink water", "Call a friend", "Do a hobby", "Other"
+    ])
+
+    if st.button("Generate My Plan"):
+        st.markdown("### 📄 Your Quit Plan")
+        st.write(f"**Reason to quit:** {reason if reason else 'Stay healthy and in control'}")
+        st.write(f"**Support system:** {support}")
+        st.write(f"**Trigger to avoid:** {trigger if trigger else 'Being around others who vape'}")
+        st.write(f"**Coping strategy:** {strategy}")
+        st.success("👍 Take a screenshot or write this down — you've got this!")
